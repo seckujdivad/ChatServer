@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run server (interpreted)",
+            "type": "shell",
+            "command": "stack ghci app/Server.hs"
+        },
+        {
+            "label": "Run client (interpreted)",
+            "type": "shell",
+            "command": "stack ghci app/Client.hs"
+        },
+        {
+            "label": "Build All",
+            "type": "shell",
+            "command": "stack build",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Run server (compiled)",
+            "type": "shell",
+            "command": "stack exec ChatServer-Server"
+        },
+        {
+            "label": "Run client (compiled)",
+            "type": "shell",
+            "command": "stack exec ChatServer-Client"
+        }
+    ]
+}

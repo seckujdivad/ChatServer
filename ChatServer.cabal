@@ -1,0 +1,57 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: e018814fc7b9bcb82465891f4647b688e167d13b4dd0371c663a522cb00047a8
+
+name:           ChatServer
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/seckujdivad/ChatServer#readme>
+homepage:       https://github.com/seckujdivad/ChatServer#readme
+bug-reports:    https://github.com/seckujdivad/ChatServer/issues
+author:         David Juckes
+maintainer:     David Juckes
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/seckujdivad/ChatServer
+
+library
+  exposed-modules:
+      Default
+  other-modules:
+      Paths_ChatServer
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable ChatServer-Client
+  main-is: Client.hs
+  other-modules:
+      Paths_ChatServer
+  hs-source-dirs:
+      app/client
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -main-is Client
+  build-depends:
+      ChatServer
+    , base >=4.7 && <5
+  default-language: Haskell2010
+
+executable ChatServer-Server
+  main-is: Server.hs
+  other-modules:
+      Paths_ChatServer
+  hs-source-dirs:
+      app/server
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -main-is Server
+  build-depends:
+      ChatServer
+    , base >=4.7 && <5
+  default-language: Haskell2010
