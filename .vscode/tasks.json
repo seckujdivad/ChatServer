@@ -4,12 +4,12 @@
         {
             "label": "Run server (interpreted)",
             "type": "shell",
-            "command": "stack ghci app/Server.hs"
+            "command": "stack ghci app/server/Server.hs"
         },
         {
             "label": "Run client (interpreted)",
             "type": "shell",
-            "command": "stack ghci app/Client.hs"
+            "command": "stack ghci app/client/Client.hs"
         },
         {
             "label": "Build All",

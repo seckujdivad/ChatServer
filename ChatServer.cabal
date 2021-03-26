@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e018814fc7b9bcb82465891f4647b688e167d13b4dd0371c663a522cb00047a8
+-- hash: c98b220f75dc61675cbb4e1780255e76e8d7719c204a946e97d2789698c737e7
 
 name:           ChatServer
 version:        0.1.0.0
@@ -23,13 +23,15 @@ source-repository head
 
 library
   exposed-modules:
-      Default
+      SocketUtils
   other-modules:
       Paths_ChatServer
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , bytestring
+    , network >=3.1.1 && <3.1.2
   default-language: Haskell2010
 
 executable ChatServer-Client
@@ -42,6 +44,8 @@ executable ChatServer-Client
   build-depends:
       ChatServer
     , base >=4.7 && <5
+    , bytestring
+    , network >=3.1.1 && <3.1.2
   default-language: Haskell2010
 
 executable ChatServer-Server
@@ -54,4 +58,6 @@ executable ChatServer-Server
   build-depends:
       ChatServer
     , base >=4.7 && <5
+    , bytestring
+    , network >=3.1.1 && <3.1.2
   default-language: Haskell2010
