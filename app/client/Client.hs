@@ -17,7 +17,10 @@ connHandler :: ConnHandler
 connHandler connection address = do
     putStrLn "To send: (leave blank to close)"
     toSend <- getLine
-    sendAll connection (Data.ByteString.Char8.pack toSend)
+
+    unless (toSend == "") $ do
+        sendAll connection (Data.ByteString.Char8.pack toSend)
+    
     message <- recv connection 1024
     putStr "Received: "
     Data.ByteString.Char8.putStrLn message
@@ -28,7 +31,7 @@ connHandler connection address = do
 runTCPClient :: HostName -> ServiceName -> ConnHandler -> IO ()
 runTCPClient host port client = withSocketsDo $ do
     address <- resolveAddress (Just host) (Just port)
-    Control.Exception.bracket (connectTo address) close (\socket -> client socket address)
+    Control.Exception.bracket (connectTo address) close (`client` address)
 
 connectTo :: AddrInfo -> IO Socket
 connectTo address = do

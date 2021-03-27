@@ -36,8 +36,8 @@ connAccepter handlerFunc sock = forever $ do
 
 runTCPServer :: Maybe HostName -> ServiceName -> ConnHandler -> IO ()
 runTCPServer host port server = withSocketsDo $ do
-        address <- resolveAddress host (Just port)
-        Control.Exception.bracket (startListen address) close (connAccepter server)
+    address <- resolveAddress host (Just port)
+    Control.Exception.bracket (startListen address) close (connAccepter server)
 
 startListen :: AddrInfo -> IO Socket
 startListen address = do
