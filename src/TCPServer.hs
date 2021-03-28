@@ -15,7 +15,6 @@ runTCPServer host port commData connHandler = withSocketsDo $ do
 connAccepter :: (Socket -> SockAddr -> a -> IO ()) -> a -> Socket -> IO ()
 connAccepter handlerFunc handlerData sock = forever $ do
     (connection, address) <- accept sock
-
     forkFinally (handlerFunc connection address handlerData) (\_ -> gracefulClose connection 5000)
 
 startListen :: AddrInfo -> IO Socket

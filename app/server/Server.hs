@@ -29,7 +29,8 @@ connHandler connection address (mainloopIn, mainloopOut) = do
     forkIO (connSender connection address mainloopOutDuplicated)
     forever $ do
         message <- recv connection 1024
-        atomically $ writeTChan mainloopIn (Data.ByteString.Char8.unpack message)
+        let strMessage = Data.ByteString.Char8.unpack message
+        atomically $ writeTChan mainloopIn strMessage
 
 connSender :: Socket -> SockAddr -> TChan String -> IO ()
 connSender connection address mainloopOut = forever $ do
