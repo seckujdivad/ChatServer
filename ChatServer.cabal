@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 866112127b82bf61ee734a03f20b97bee66705cf1a10ecc5aae1d15335008bec
+-- hash: c737da89c70c219e4b38e68ecfd138bddb68a4198967d15fff49eea0caf42a20
 
 name:           ChatServer
 version:        0.1.0.0
@@ -24,6 +24,8 @@ source-repository head
 library
   exposed-modules:
       SocketUtils
+      TCPClient
+      TCPServer
   other-modules:
       Paths_ChatServer
   hs-source-dirs:
