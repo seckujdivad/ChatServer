@@ -24,12 +24,12 @@
         {
             "label": "Run server (compiled)",
             "type": "shell",
-            "command": "stack exec ChatServer-Server"
+            "command": "stack run ChatServer-Server"
         },
         {
             "label": "Run client (compiled)",
             "type": "shell",
-            "command": "stack exec ChatServer-Client"
+            "command": "stack run ChatServer-Client"
         }
     ]
 }
