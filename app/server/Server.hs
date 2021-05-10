@@ -34,15 +34,10 @@ connHandler connection address (mainloopIn, mainloopOut) = do
 
 connSender :: Socket -> SockAddr -> TChan String -> IO ()
 connSender connection address mainloopOut = forever $ do
-    toSendMaybe <- atomically $ tryReadTChan mainloopOut
-    case toSendMaybe of
-        Just toSend -> sendAll connection (Data.ByteString.Char8.pack toSend)
-        Nothing -> return ()
+    toSend <- atomically $ readTChan mainloopOut
+    sendAll connection (Data.ByteString.Char8.pack toSend)
 
 serverMainloop :: ServerInterface -> IO ()
 serverMainloop (mainloopIn, mainloopOut) =  forever $ do
-    message <- atomically $ tryReadTChan mainloopIn
-    case message of
-        Just messageContents -> do
-           atomically $ writeTChan mainloopOut messageContents
-        Nothing -> return ()
+    message <- atomically $ readTChan mainloopIn
+    atomically $ writeTChan mainloopOut message
