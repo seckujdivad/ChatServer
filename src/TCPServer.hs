@@ -2,7 +2,7 @@ module TCPServer where
 
 import Network.Socket
 import qualified Control.Exception
-import Control.Concurrent (forkIO, forkFinally)
+import Control.Concurrent (forkFinally)
 import Control.Monad (forever)
 
 import SocketUtils (resolveAddress)
