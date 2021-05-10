@@ -38,6 +38,6 @@ connSender connection address mainloopOut = forever $ do
     sendAll connection (Data.ByteString.Char8.pack toSend)
 
 serverMainloop :: ServerInterface -> IO ()
-serverMainloop (mainloopIn, mainloopOut) =  forever $ do
+serverMainloop (mainloopIn, mainloopOut) = forever $ do
     message <- atomically $ readTChan mainloopIn
     atomically $ writeTChan mainloopOut message
