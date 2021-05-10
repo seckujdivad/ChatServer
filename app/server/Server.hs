@@ -6,7 +6,7 @@ import Network.Socket.ByteString (recv, sendAll)
 import Control.Monad (unless, forever)
 import Control.Monad.STM (atomically)
 import Control.Concurrent (forkIO)
-import Control.Concurrent.STM.TChan (TChan, newTChan, dupTChan, tryReadTChan, writeTChan, newBroadcastTChan)
+import Control.Concurrent.STM.TChan (TChan, newTChan, dupTChan, tryReadTChan, writeTChan, newBroadcastTChan, readTChan)
 
 import qualified Data.ByteString
 import qualified Data.ByteString.Char8
