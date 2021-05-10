@@ -22,6 +22,25 @@
             "logFile": "${workspaceFolder}/.vscode/phoityne.log",
             "logLevel": "WARNING",
             "forceInspect": false
+        },
+        {
+            "type": "ghc",
+            "request": "launch",
+            "name": "Client",
+            "internalConsoleOptions": "openOnSessionStart",
+            "workspace": "${workspaceFolder}",
+            "startup": "${workspaceFolder}/app/client/Client.hs",
+            "startupFunc": "",
+            "startupArgs": "",
+            "stopOnEntry": false,
+            "mainArgs": "",
+            "ghciPrompt": "H>>= ",
+            "ghciInitialPrompt": "Prelude>",
+            "ghciCmd": "stack ghci --test --no-load --no-build --main-is TARGET",
+            "ghciEnv": {},
+            "logFile": "${workspaceFolder}/.vscode/phoityne.log",
+            "logLevel": "WARNING",
+            "forceInspect": false
         }
     ]
 }
