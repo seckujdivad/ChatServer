@@ -9,7 +9,7 @@ import Control.Concurrent (forkIO)
 import TCPClient (runTCPClient, ConnHandler)
 
 main :: IO ()
-main = runTCPClient "127.0.0.1" "3000" connHandler
+main = runTCPClient "127.0.0.1" "4321" connHandler
 
 connHandler :: ConnHandler
 connHandler connection address = do

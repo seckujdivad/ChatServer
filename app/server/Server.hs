@@ -21,7 +21,7 @@ main = do
     mainloopOut <- atomically newBroadcastTChan
     let interface = (mainloopIn, mainloopOut)
     forkIO (serverMainloop interface)
-    runTCPServer Nothing "3000" (connHandler interface)
+    runTCPServer Nothing "4321" (connHandler interface)
 
 connHandler :: ServerInterface -> Socket -> SockAddr -> IO ()
 connHandler (mainloopIn, mainloopOut) connection address = do
