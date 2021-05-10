@@ -21,10 +21,10 @@ main = do
     mainloopOut <- atomically newBroadcastTChan
     let interface = (mainloopIn, mainloopOut)
     forkIO (serverMainloop interface)
-    runTCPServer Nothing "3000" interface connHandler
+    runTCPServer Nothing "3000" (connHandler interface)
 
-connHandler :: Socket -> SockAddr -> ServerInterface -> IO ()
-connHandler connection address (mainloopIn, mainloopOut) = do
+connHandler :: ServerInterface -> Socket -> SockAddr -> IO ()
+connHandler (mainloopIn, mainloopOut) connection address = do
     mainloopOutDuplicated <- atomically $ dupTChan mainloopOut
     forkIO (connSender connection address mainloopOutDuplicated)
     forever $ do
