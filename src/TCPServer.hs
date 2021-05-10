@@ -1,4 +1,4 @@
-module TCPServer where
+module TCPServer (runTCPServer) where
 
 import Network.Socket (SockAddr, Socket, HostName, ServiceName, withSocketsDo,
     AddrInfo (addrAddress, addrProtocol, addrFamily, addrSocketType),
@@ -11,6 +11,7 @@ import Control.Monad (forever)
 
 import SocketUtils (resolveAddress)
 
+-- |Starts a TCP listen server on the given address and port. 'connHandler' is started in a new thread for each new connection
 runTCPServer :: Maybe HostName -> ServiceName -> (Socket -> SockAddr -> IO ()) -> IO ()
 runTCPServer host port connHandler = withSocketsDo $ do
     address <- resolveAddress host (Just port)

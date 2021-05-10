@@ -30,6 +30,11 @@
             "label": "Run client (compiled)",
             "type": "shell",
             "command": "stack run ChatServer-Client"
+        },
+        {
+            "label": "Build Haddock",
+            "type": "shell",
+            "command": "stack haddock --copy-bins --local-bin-path build --open"
         }
     ]
 }
