@@ -14,7 +14,7 @@
         {
             "label": "Build All",
             "type": "shell",
-            "command": "stack build",
+            "command": "stack build --copy-bins --local-bin-path build",
             "problemMatcher": [],
             "group": {
                 "kind": "build",
