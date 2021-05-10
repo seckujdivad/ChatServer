@@ -1,7 +1,6 @@
 module Client where
 
-import qualified Data.ByteString.Char8
-import Network.Socket
+import Data.ByteString.Char8 (pack, putStrLn)
 import Network.Socket.ByteString (recv, sendAll)
 import Control.Monad (unless, forever)
 import Control.Concurrent (forkIO)
@@ -16,7 +15,7 @@ connHandler connection address = do
     forkIO (connReceiver connection address)
     forever $ do
         toSend <- getLine
-        sendAll connection (Data.ByteString.Char8.pack toSend)
+        sendAll connection (pack toSend)
 
 connReceiver :: ConnHandler
 connReceiver connection address = forever $ do

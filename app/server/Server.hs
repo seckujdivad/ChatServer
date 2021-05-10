@@ -1,6 +1,6 @@
 module Server where
 
-import Network.Socket
+import Network.Socket (SockAddr, Socket)
 import Network.Socket.ByteString (recv, sendAll)
 
 import Control.Monad (unless, forever)
@@ -8,8 +8,7 @@ import Control.Monad.STM (atomically)
 import Control.Concurrent (forkIO)
 import Control.Concurrent.STM.TChan (TChan, newTChan, dupTChan, tryReadTChan, writeTChan, newBroadcastTChan, readTChan)
 
-import qualified Data.ByteString
-import qualified Data.ByteString.Char8
+import Data.ByteString.Char8 (pack, unpack)
 
 import TCPServer (runTCPServer)
 
@@ -29,13 +28,13 @@ connHandler (mainloopIn, mainloopOut) connection address = do
     forkIO (connSender connection address mainloopOutDuplicated)
     forever $ do
         message <- recv connection 1024
-        let strMessage = Data.ByteString.Char8.unpack message
+        let strMessage = unpack message
         atomically $ writeTChan mainloopIn strMessage
 
 connSender :: Socket -> SockAddr -> TChan String -> IO ()
 connSender connection address mainloopOut = forever $ do
     toSend <- atomically $ readTChan mainloopOut
-    sendAll connection (Data.ByteString.Char8.pack toSend)
+    sendAll connection (pack toSend)
 
 serverMainloop :: ServerInterface -> IO ()
 serverMainloop (mainloopIn, mainloopOut) = forever $ do

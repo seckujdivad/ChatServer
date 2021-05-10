@@ -1,6 +1,7 @@
 module SocketUtils where
 
-import Network.Socket
+import Network.Socket (ServiceName, SocketType(Stream), AddrInfo(addrFlags, addrSocketType),
+    HostName, defaultHints, getAddrInfo, AddrInfoFlag(AI_PASSIVE))
 
 resolveAddress :: Maybe HostName -> Maybe ServiceName -> IO AddrInfo
 resolveAddress host port = do
